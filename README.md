@@ -45,11 +45,11 @@ composer require elephpant/social-share
 
 ## Documentation
 
-###### For details on how to use, see a sample folder in the component directory. In it you will have an example of use for each class. It works like this:
+###### For details on how to use, see a sample folder in the component directory. In it you will have an example of using the class. It works like this:
 
-Para mais detalhes sobre como usar, veja uma pasta de exemplo no diretório do componente. Nela terá um exemplo de uso para cada classe. Ele funciona assim:
+Para mais detalhes sobre como usar, veja uma pasta de exemplo no diretório do componente. Nela terá um exemplo de uso da classe. Ele funciona assim:
 
-##### Create SocialShare:
+##### Basic Usage:
 
 ```php
 <?php
@@ -57,33 +57,25 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use ElePHPant\SocialShare\SocialShare;
 
-//url, text
+// [required] $url, [required] $text
 $share = new SocialShare('https://github.com', 'Build software better, together');
 ?>
 
 <ul>
     <li><a href="<?= $share->facebook(); ?>" target="_blank">Facebook</a></li>
-    <li><a href="<?= $share->twitter(); ?>" target="_blank">Twitter</a></li>
-    <li><a href="<?= $share->linkedin(); ?>" target="_blank">LinkedIn</a></li>
+    <li><a href="<?= $share->twitter(/* $username */); ?>" target="_blank">Twitter</a></li>
+    <li><a href="<?= $share->linkedin(/* $summary, $source */); ?>" target="_blank">LinkedIn</a></li>
     <li><a href="<?= $share->pinterest('https://domain.com/path-to-image.jpg'); ?>" target="_blank">Pinterest</a></li>
     <li><a href="<?= $share->whatsapp(); ?>" target="_blank">WhatsApp</a></li>
     <li><a href="<?= $share->telegram(); ?>" target="_blank">Telegram</a></li>
     <li><a href="<?= $share->reddit(); ?>" target="_blank">Reddit</a></li>
-    <li><a href="<?= $share->email(); ?>" target="_blank">Email</a></li>
+    <li><a href="<?= $share->email(/* $recipientEmail */); ?>" target="_blank">Email</a></li>
 </ul>
 ```
 
 ## Contributing
 
 Please see [CONTRIBUTING](https://github.com/wilderamorim/social-share/blob/master/CONTRIBUTING.md) for details.
-
-## Support
-
-###### Security: If you discover any security related issues, please email agencia@uebi.com.br instead of using the issue tracker.
-
-Se você descobrir algum problema relacionado à segurança, envie um e-mail para agencia@uebi.com.br em vez de usar o rastreador de problemas.
-
-Thank you
 
 ## Credits
 

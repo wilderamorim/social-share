@@ -6,7 +6,13 @@ namespace ElePHPant\SocialShare;
 
 /**
  * Class SocialShare
+ *
+ * Please report bugs on https://github.com/wilderamorim/social-share/issues
+ *
  * @package ElePHPant\SocialShare
+ * @author Wilder Amorim <agencia@uebi.com.br>
+ * @copyright Copyright (c) 2020, Uebi. All rights reserved
+ * @license MIT License
  */
 class SocialShare
 {
@@ -21,8 +27,8 @@ class SocialShare
 
     /**
      * SocialShare constructor.
-     * @param string $url
-     * @param string $text
+     * @param string $url   Address of the page to be shared
+     * @param string $text  Page title or whatever title you want to assign to the content
      */
     public function __construct(string $url, string $text)
     {
@@ -35,27 +41,29 @@ class SocialShare
      */
     public static function facebook(): string
     {
-        return 'https://www.facebook.com/sharer/sharer.php?u=' . self::$url;
+        self::$href = 'https://www.facebook.com/sharer/sharer.php?';
+        self::$href .= http_build_query(['u' => self::$url]);
+        return self::$href;
     }
 
     /**
-     * @param string|null $profile
+     * @param string|null $username Your Twitter username, e.g., rasmus
      * @return string
      */
-    public static function twitter(?string $profile = null): string
+    public static function twitter(?string $username = null): string
     {
         self::$href = 'http://twitter.com/share?';
         self::$href .= http_build_query([
             'text' => self::$text,
             'url' => self::$url,
-            'via' => str_replace('@', null, $profile)
+            'via' => str_replace('@', null, $username)
         ]);
         return self::$href;
     }
 
     /**
-     * @param string|null $summary
-     * @param string|null $source
+     * @param string|null $summary  Description of page content
+     * @param string|null $source   Name of the content source, such as the name of the website or blog where the content is
      * @return string
      */
     public static function linkedin(?string $summary = null, ?string $source = null): string
@@ -71,7 +79,7 @@ class SocialShare
     }
 
     /**
-     * @param string $image
+     * @param string $image Path (URL) to the image.
      * @return string
      */
     public static function pinterest(string $image): string
@@ -90,7 +98,9 @@ class SocialShare
      */
     public static function whatsapp(): string
     {
-        return 'https://wa.me/?text=' . urlencode(self::$text . ' - ' . self::$url);
+        self::$href = 'https://wa.me/?';
+        self::$href .= http_build_query(['text' => self::$text . ' - ' . self::$url]);
+        return self::$href;
     }
 
     /**
@@ -120,7 +130,7 @@ class SocialShare
     }
 
     /**
-     * @param string|null $recipientEmail
+     * @param string|null $recipientEmail   Recipient's Email
      * @return string
      */
     public static function email(?string $recipientEmail = null): string
