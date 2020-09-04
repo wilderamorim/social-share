@@ -1,0 +1,35 @@
+{
+  "name": "elephpant/social-share",
+  "description": "A simple way to generate social share links.",
+  "keywords": [
+    "ElePHPant",
+    "Share",
+    "Social Network",
+    "Facebook",
+    "Twitter",
+    "LinkedIn",
+    "Pinterest",
+    "WhatsApp",
+    "Telegram",
+    "Reddit",
+    "Email"
+  ],
+  "homepage": "https://www.uebi.com.br",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wilder Amorim",
+      "email": "agencia@uebi.com.br",
+      "homepage": "https://www.uebi.com.br",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "ElePHPant\\SocialShare\\": "src"
+    }
+  }
+}
