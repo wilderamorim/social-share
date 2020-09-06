@@ -17,13 +17,10 @@ namespace ElePHPant\SocialShare;
 class SocialShare
 {
     /** @var string */
-    protected static $url;
+    protected $url;
 
     /** @var string */
-    protected static $text;
-
-    /** @var */
-    protected static $href;
+    protected $text;
 
     /**
      * SocialShare constructor.
@@ -32,33 +29,33 @@ class SocialShare
      */
     public function __construct(string $url, string $text)
     {
-        self::$url = $url;
-        self::$text = $text;
+        $this->url = $url;
+        $this->text = $text;
     }
 
     /**
      * @return string
      */
-    public static function facebook(): string
+    public function facebook(): string
     {
-        self::$href = 'https://www.facebook.com/sharer/sharer.php?';
-        self::$href .= http_build_query(['u' => self::$url]);
-        return self::$href;
+        $url = 'https://www.facebook.com/sharer/sharer.php?';
+        $url .= http_build_query(['u' => $this->url]);
+        return $url;
     }
 
     /**
      * @param string|null $username Your Twitter username, e.g., rasmus
      * @return string
      */
-    public static function twitter(?string $username = null): string
+    public function twitter(?string $username = null): string
     {
-        self::$href = 'http://twitter.com/share?';
-        self::$href .= http_build_query([
-            'text' => self::$text,
-            'url' => self::$url,
+        $url = 'http://twitter.com/share?';
+        $url .= http_build_query([
+            'text' => $this->text,
+            'url' => $this->url,
             'via' => str_replace('@', null, $username)
         ]);
-        return self::$href;
+        return $url;
     }
 
     /**
@@ -66,78 +63,78 @@ class SocialShare
      * @param string|null $source   Name of the content source, such as the name of the website or blog where the content is
      * @return string
      */
-    public static function linkedin(?string $summary = null, ?string $source = null): string
+    public function linkedin(?string $summary = null, ?string $source = null): string
     {
-        self::$href = 'https://www.linkedin.com/shareArticle?mini=true&';
-        self::$href .= http_build_query([
-            'title' => self::$text,
+        $url = 'https://www.linkedin.com/shareArticle?mini=true&';
+        $url .= http_build_query([
+            'title' => $this->text,
             'summary' => $summary,
-            'url' => self::$url,
+            'url' => $this->url,
             'source' => $source
         ]);
-        return self::$href;
+        return $url;
     }
 
     /**
-     * @param string $image Path (URL) to the image.
+     * @param string|null $image Path (URL) to the image.
      * @return string
      */
-    public static function pinterest(string $image): string
+    public function pinterest(?string $image = null): string
     {
-        self::$href = 'https://pinterest.com/pin/create/button/?';
-        self::$href .= http_build_query([
-            'url' => self::$url,
+        $url = 'https://pinterest.com/pin/create/button/?';
+        $url .= http_build_query([
+            'url' => $this->url,
             'media' => $image,
-            'description' => self::$text
+            'description' => $this->text
         ]);
-        return self::$href;
+        return $url;
     }
 
     /**
      * @return string
      */
-    public static function whatsapp(): string
+    public function whatsapp(): string
     {
-        self::$href = 'https://wa.me/?';
-        self::$href .= http_build_query(['text' => self::$text . ' - ' . self::$url]);
-        return self::$href;
+        $url = 'https://wa.me/?';
+        $url .= http_build_query(['text' => $this->text . ' - ' . $this->url]);
+        return $url;
     }
 
     /**
      * @return string
      */
-    public static function telegram(): string
+    public function telegram(): string
     {
-        self::$href = 'https://telegram.me/share/url?';
-        self::$href .= http_build_query([
-            'url' => self::$url,
-            'text' => self::$text
+        $url = 'https://telegram.me/share/url?';
+        $url .= http_build_query([
+            'url' => $this->url,
+            'text' => $this->text
         ]);
-        return self::$href;
+        return $url;
     }
 
     /**
      * @return string
      */
-    public static function reddit(): string
+    public function reddit(): string
     {
-        self::$href = 'https://www.reddit.com/submit?';
-        self::$href .= http_build_query([
-            'title' => self::$text,
-            'url' => self::$url
+        $url = 'https://www.reddit.com/submit?';
+        $url .= http_build_query([
+            'title' => $this->text,
+            'url' => $this->url
         ]);
-        return self::$href;
+        return $url;
     }
 
     /**
      * @param string|null $recipientEmail   Recipient's Email
      * @return string
      */
-    public static function email(?string $recipientEmail = null): string
+    public function email(?string $recipientEmail = null): string
     {
-        self::$href = 'mailto:' . $recipientEmail;
-        self::$href .= '?subject=' . self::$text;
-        self::$href .= '&body=' . urlencode(self::$url);
-        return self::$href;
+        $url = 'mailto:' . $recipientEmail;
+        $url .= '?subject=' . $this->text;
+        $url .= '&body=' . urlencode($this->url);
+        return $url;
     }
 }

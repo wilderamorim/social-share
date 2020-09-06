@@ -65,7 +65,7 @@ $share = new SocialShare('https://github.com', 'Build software better, together'
     <li><a href="<?= $share->facebook(); ?>" target="_blank">Facebook</a></li>
     <li><a href="<?= $share->twitter(/* $username */); ?>" target="_blank">Twitter</a></li>
     <li><a href="<?= $share->linkedin(/* $summary, $source */); ?>" target="_blank">LinkedIn</a></li>
-    <li><a href="<?= $share->pinterest('https://domain.com/path-to-image.jpg'); ?>" target="_blank">Pinterest</a></li>
+    <li><a href="<?= $share->pinterest(/* $image */); ?>" target="_blank">Pinterest</a></li>
     <li><a href="<?= $share->whatsapp(); ?>" target="_blank">WhatsApp</a></li>
     <li><a href="<?= $share->telegram(); ?>" target="_blank">Telegram</a></li>
     <li><a href="<?= $share->reddit(); ?>" target="_blank">Reddit</a></li>

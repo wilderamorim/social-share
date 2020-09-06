@@ -20,7 +20,7 @@ $share = new SocialShare('https://github.com', 'Build software better, together'
     <!-- [optional] $summary, [optional] $source -->
     <li><a href="<?= $share->linkedin('GitHub is a development platform inspired by the way you work.', 'GitHub'); ?>" target="_blank">LinkedIn</a></li>
 
-    <!-- [required] $image -->
+    <!-- [optional] $image -->
     <li><a href="<?= $share->pinterest('https://placehold.it/1920x1080'); ?>" target="_blank">Pinterest</a></li>
 
     <li><a href="<?= $share->whatsapp(); ?>" target="_blank">WhatsApp</a></li>
