@@ -19,7 +19,6 @@ class SocialShareTest extends TestCase
         );
     }
 
-
     public function test_share_on_facebook(): void
     {
         $expectation = 'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com';
@@ -48,7 +47,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::twitter()
+            self::$socialShare::twitter(),
         );
     }
 
@@ -61,7 +60,7 @@ class SocialShareTest extends TestCase
             self::$socialShare::linkedin(
                 summary: 'GitHub is a development platform inspired by the way you work.',
                 source: 'GitHub',
-            )
+            ),
         );
     }
 
@@ -71,7 +70,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::linkedin()
+            self::$socialShare::linkedin(),
         );
     }
 
@@ -83,7 +82,7 @@ class SocialShareTest extends TestCase
             $expectation,
             self::$socialShare::pinterest(
                 image: 'https://placehold.it/1920x1080',
-            )
+            ),
         );
     }
 
@@ -93,7 +92,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::pinterest()
+            self::$socialShare::pinterest(),
         );
     }
 
@@ -103,7 +102,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::whatsapp()
+            self::$socialShare::whatsapp(),
         );
     }
 
@@ -113,7 +112,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::telegram()
+            self::$socialShare::telegram(),
         );
     }
 
@@ -123,7 +122,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::reddit()
+            self::$socialShare::reddit(),
         );
     }
 
@@ -133,7 +132,7 @@ class SocialShareTest extends TestCase
 
         $this->assertEquals(
             $expectation,
-            self::$socialShare::email()
+            self::$socialShare::email(),
         );
     }
 
@@ -145,7 +144,7 @@ class SocialShareTest extends TestCase
             $expectation,
             self::$socialShare::email(
                 recipientEmail: 'john.doe@domain.com',
-            )
+            ),
         );
     }
 }

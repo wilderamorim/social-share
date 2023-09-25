@@ -16,7 +16,7 @@ class LinkedInShare implements ShareableInterface
             'title' => $this->context->getText(),
             'summary' => $summary,
             'url' => $this->context->getUrl(),
-            'source' => $source
+            'source' => $source,
         ]);
     }
 }
