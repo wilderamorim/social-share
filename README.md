@@ -34,7 +34,7 @@ Um jeito simples de gerar links de compartilhamento social.
 SocialShare is available via Composer:
 
 ```bash
-"elephpant/social-share": "1.0.*"
+"elephpant/social-share": "2.0.*"
 ```
 
 or run
@@ -62,14 +62,14 @@ $share = new SocialShare('https://github.com', 'Build software better, together'
 ?>
 
 <ul>
-    <li><a href="<?= $share->facebook(); ?>" target="_blank">Facebook</a></li>
-    <li><a href="<?= $share->twitter(/* $username */); ?>" target="_blank">Twitter</a></li>
-    <li><a href="<?= $share->linkedin(/* $summary, $source */); ?>" target="_blank">LinkedIn</a></li>
-    <li><a href="<?= $share->pinterest(/* $image */); ?>" target="_blank">Pinterest</a></li>
-    <li><a href="<?= $share->whatsapp(); ?>" target="_blank">WhatsApp</a></li>
-    <li><a href="<?= $share->telegram(); ?>" target="_blank">Telegram</a></li>
-    <li><a href="<?= $share->reddit(); ?>" target="_blank">Reddit</a></li>
-    <li><a href="<?= $share->email(/* $recipientEmail */); ?>" target="_blank">Email</a></li>
+    <li><a href="<?= $share::facebook(); ?>" target="_blank">Facebook</a></li>
+    <li><a href="<?= $share::twitter(/* $username */); ?>" target="_blank">Twitter</a></li>
+    <li><a href="<?= $share::linkedin(/* $summary, $source */); ?>" target="_blank">LinkedIn</a></li>
+    <li><a href="<?= $share::pinterest(/* $image */); ?>" target="_blank">Pinterest</a></li>
+    <li><a href="<?= $share::whatsapp(); ?>" target="_blank">WhatsApp</a></li>
+    <li><a href="<?= $share::telegram(); ?>" target="_blank">Telegram</a></li>
+    <li><a href="<?= $share::reddit(); ?>" target="_blank">Reddit</a></li>
+    <li><a href="<?= $share::email(/* $recipientEmail */); ?>" target="_blank">Email</a></li>
 </ul>
 ```
 
