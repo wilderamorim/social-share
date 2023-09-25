@@ -1,8 +1,18 @@
 <?php
 
-
 namespace ElePHPant\SocialShare;
 
+use ElePHPant\SocialShare\Context\SocialShareContext;
+use ElePHPant\SocialShare\ShareProviders\{
+    EmailShare,
+    FacebookShare,
+    LinkedInShare,
+    PinterestShare,
+    RedditShare,
+    TelegramShare,
+    TwitterShare,
+    WhatsAppShare,
+};
 
 /**
  * Class SocialShare
@@ -16,46 +26,33 @@ namespace ElePHPant\SocialShare;
  */
 class SocialShare
 {
-    /** @var string */
-    protected $url;
-
-    /** @var string */
-    protected $text;
+    /** @var SocialShareContext $context */
+    protected static SocialShareContext $context;
 
     /**
-     * SocialShare constructor.
      * @param string $url   Address of the page to be shared
      * @param string $text  Page title or whatever title you want to assign to the content
      */
     public function __construct(string $url, string $text)
     {
-        $this->url = $url;
-        $this->text = $text;
+        self::$context = new SocialShareContext($url, $text);
     }
 
     /**
      * @return string
      */
-    public function facebook(): string
+    public static function facebook(): string
     {
-        $url = 'https://www.facebook.com/sharer/sharer.php?';
-        $url .= http_build_query(['u' => $this->url]);
-        return $url;
+        return (new FacebookShare(self::$context))->generateUrl();
     }
 
     /**
-     * @param string|null $username Your Twitter username, e.g., rasmus
+     * @param string|null $username Your TwitterShare username, e.g., rasmus
      * @return string
      */
-    public function twitter(?string $username = null): string
+    public static function twitter(?string $username = null): string
     {
-        $url = 'http://twitter.com/share?';
-        $url .= http_build_query([
-            'text' => $this->text,
-            'url' => $this->url,
-            'via' => str_replace('@', null, $username)
-        ]);
-        return $url;
+        return (new TwitterShare(self::$context))->generateUrl($username);
     }
 
     /**
@@ -63,78 +60,50 @@ class SocialShare
      * @param string|null $source   Name of the content source, such as the name of the website or blog where the content is
      * @return string
      */
-    public function linkedin(?string $summary = null, ?string $source = null): string
+    public static function linkedin(?string $summary = null, ?string $source = null): string
     {
-        $url = 'https://www.linkedin.com/shareArticle?mini=true&';
-        $url .= http_build_query([
-            'title' => $this->text,
-            'summary' => $summary,
-            'url' => $this->url,
-            'source' => $source
-        ]);
-        return $url;
+        return (new LinkedInShare(self::$context))->generateUrl($summary, $source);
     }
 
     /**
      * @param string|null $image Path (URL) to the image.
      * @return string
      */
-    public function pinterest(?string $image = null): string
+    public static function pinterest(?string $image = null): string
     {
-        $url = 'https://pinterest.com/pin/create/button/?';
-        $url .= http_build_query([
-            'url' => $this->url,
-            'media' => $image,
-            'description' => $this->text
-        ]);
-        return $url;
+        return (new PinterestShare(self::$context))->generateUrl($image);
     }
 
     /**
      * @return string
      */
-    public function whatsapp(): string
+    public static function whatsapp(): string
     {
-        $url = 'https://wa.me/?';
-        $url .= http_build_query(['text' => $this->text . ' - ' . $this->url]);
-        return $url;
+        return (new WhatsAppShare(self::$context))->generateUrl();
     }
 
     /**
      * @return string
      */
-    public function telegram(): string
+    public static function telegram(): string
     {
-        $url = 'https://telegram.me/share/url?';
-        $url .= http_build_query([
-            'url' => $this->url,
-            'text' => $this->text
-        ]);
-        return $url;
+        return (new TelegramShare(self::$context))->generateUrl();
     }
 
     /**
      * @return string
      */
-    public function reddit(): string
+    public static function reddit(): string
     {
-        $url = 'https://www.reddit.com/submit?';
-        $url .= http_build_query([
-            'title' => $this->text,
-            'url' => $this->url
-        ]);
-        return $url;
+        return (new RedditShare(self::$context))->generateUrl();
     }
 
     /**
-     * @param string|null $recipientEmail   Recipient's Email
+     * @param string|null $recipientEmail   Recipient's EmailShare
      * @return string
      */
-    public function email(?string $recipientEmail = null): string
+    public static function email(?string $recipientEmail = null): string
     {
-        $url = 'mailto:' . $recipientEmail;
-        $url .= '?subject=' . $this->text;
-        $url .= '&body=' . urlencode($this->url);
-        return $url;
+        return (new EmailShare(self::$context))->generateUrl($recipientEmail);
     }
 }
